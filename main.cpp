@@ -46,6 +46,7 @@ public:
     
     virtual ~ConfigurableEventListener()
     {
+        delete eventListener;
     }
     
     virtual void OnTestProgramStart(const UnitTest& unit_test)
