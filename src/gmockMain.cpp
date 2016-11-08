@@ -1,12 +1,13 @@
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
 
-#include "EventListenerUtils.h"
+#include "TestListenerUtils.h"
 
 int main(int argc, char **argv) {
     ::testing::InitGoogleMock(&argc, argv);
 
-    EventListenerUtils::setDefaultEventListener();
+    TestListenerUtils::Listener* listener = TestListenerUtils::createEventListener();
+    TestListenerUtils::setEventListener(listener);
 
     return RUN_ALL_TESTS();
 }

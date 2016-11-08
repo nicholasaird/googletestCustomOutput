@@ -4,7 +4,7 @@
 # gprint library
 gprintSrc = [
     'src/main/ConfigurableEventListener.cpp'
-    , 'src/main/EventListenerUtils.cpp'
+    , 'src/main/TestListenerUtils.cpp'
 ]
 gprintInc = include_directories('src/main')
 gprintLib = static_library(
