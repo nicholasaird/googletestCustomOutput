@@ -2,12 +2,10 @@
 
 #include "EventListenerUtils.h"
 
-void setTestEventListener();
-
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
 
-    EventListenerUtils::setTestEventListener();
+    EventListenerUtils::setDefaultEventListener();
 
     return RUN_ALL_TESTS();
 }

@@ -3,12 +3,10 @@
 
 #include "EventListenerUtils.h"
 
-void setTestEventListener();
-
 int main(int argc, char **argv) {
     ::testing::InitGoogleMock(&argc, argv);
 
-    EventListenerUtils::setTestEventListener();
+    EventListenerUtils::setDefaultEventListener();
 
     return RUN_ALL_TESTS();
 }
