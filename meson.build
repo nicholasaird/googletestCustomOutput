@@ -1,11 +1,10 @@
 # Expects gtestLibDep and gmockLibDep to be defined
 # in the meson.build file that calls this file.
 
-project('gprint', 'cpp')
-
+# gprint library
 gprintSrc = [
-    'main/ConfigurableEventListener.cpp'
-    , 'main/EventListenerUtils.cpp'
+    'src/main/ConfigurableEventListener.cpp'
+    , 'src/main/EventListenerUtils.cpp'
 ]
 gprintInc = include_directories('src/main')
 gprintLib = static_library(
@@ -20,14 +19,26 @@ gprintLibDep = declare_dependency(
     , dependencies : gtestLibDep
 )
 
+# gprint library (gtest main)
 gprintGtestMainLib = static_library(
     'gprintGtestMainLib'
     , sources : 'src/gtestMain.cpp'
-    , dependencies : gprintLibDep
+    , dependencies : [gprintLibDep, gtestLibDep]
+)
+gprintGtestMainLibDep = declare_dependency(
+    link_with : gprintGtestMainLib
+    , include_directories : gprintInc
+    , dependencies : [gprintLibDep, gtestLibDep]
 )
 
+# gprint library (gmock main)
 gprintGmockMainLib = static_library(
     'gprintGmockMainLib'
     , sources : 'src/gmockMain.cpp'
-    , dependencies : gprintLibDep
+    , dependencies : [gprintLibDep, gtestLibDep, gmockLibDep]
+)
+gprintGmockMainLibDep = declare_dependency(
+    link_with : gprintGmockMainLib
+    , include_directories : gprintInc
+    , dependencies : [gprintLibDep, gtestLibDep, gmockLibDep]
 )
