@@ -1,11 +1,13 @@
 cmake_minimum_required(VERSION 2.8)
-project(gtest-output CXX)
+project(gprint CXX)
 
-set(DIR_SRC_MAIN src/main)
-file(GLOB_RECURSE files_src_main ${DIR_SOURCE_MAIN}/*.cpp)
-add_library(gtest_output2 ${files_src_main})
-include_directories(gtest_output2 ${DIR_SOURCE_MAIN})
-target_link_libraries(gtest_output2 gtest gtest)
+file(GLOB_RECURSE gprintSrc src/main/*.cpp)
+add_library(gprintLib ${gprintSrc})
+target_include_directories(gprintLib PUBLIC src/main)
+target_link_libraries(gprintLib gtest)
 
-add_library(gtest_output_main src/Main.cpp)
-target_link_libraries(gtest_output_main gtest_output)
+add_library(gprintGtestMainLib src/gtestMain.cpp)
+target_link_libraries(gprintGtestMainLib gprintLib gtest)
+
+add_library(gprintGmockMainLib src/gmockMain.cpp)
+target_link_libraries(gprintGmockMainLib gprintLib gtest gmock)
